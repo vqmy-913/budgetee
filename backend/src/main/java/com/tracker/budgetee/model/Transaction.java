@@ -1,7 +1,12 @@
 package com.tracker.budgetee.model;
 
-import jakarta.persistence.*;
 import java.time.LocalDate;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "transactions")
@@ -15,12 +20,13 @@ public class Transaction {
     private Double amount;
     private LocalDate date;
     private String category;
+    private String type;
 
-    // No-arg constructor (required by JPA)
+    // no-arg constructor (required by JPA)
     public Transaction() {
     }
 
-    // All-arg constructor (optional)
+    // all-arg constructor
     public Transaction(String description, Double amount, LocalDate date, String category) {
         this.description = description;
         this.amount = amount;
@@ -28,7 +34,7 @@ public class Transaction {
         this.category = category;
     }
 
-    // Getters and Setters
+    // getters and setters
     // map fields to database columns
 
     public Long getId() {
@@ -71,6 +77,14 @@ public class Transaction {
         this.category = category;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     // debug with a readable string of the above fields
 
     @Override
@@ -81,6 +95,7 @@ public class Transaction {
                 ", amount=" + amount +
                 ", date=" + date +
                 ", category='" + category + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
 }
